@@ -7,27 +7,23 @@
     <script>
       function solution(n, arr) {
         let answer;
+
         let max = Number.MIN_SAFE_INTEGER;
-        //전체 아이템 탐색 -> sum 값 구하기 -> 최대값 비교 -> 같으면 큰 값
 
+        //모든 숫자 반복
         for (let x of arr) {
-          let sum = 0;
-          let tmp = x;
-          while (tmp) {
-            sum += tmp % 10;
-            tmp = Math.floor(tmp / 10);
-          }
+          const sum = x
+            .toString()
+            .split('')
+            .reduce((acc, cur) => acc + Number(cur), 0);
 
-          // let sum = x
-          //   .toString()
-          //   .split('')
-          //   .reduce((a, b) => a + Number(b), 0);
-
-          if (sum > max) {
+          if (max < sum) {
             max = sum;
             answer = x;
-          } else if (sum === max) {
-            if (x > answer) {
+          }
+
+          if (max === sum) {
+            if (answer < x) {
               answer = x;
             }
           }
@@ -41,3 +37,30 @@
     </script>
   </body>
 </html>
+
+<!-- <html>
+    <head>
+        <meta charset="UTF-8">
+        <title>출력결과</title>
+    </head>
+    <body>
+        <script>
+            function solution(n, arr){
+                let answer, max=Number.MIN_SAFE_INTEGER;
+                for(let x of arr){
+                    let sum=x.toString().split('').reduce((a, b)=>a+Number(b), 0);
+                    if(sum>max){
+                        max=sum;
+                        answer=x;
+                    }
+                    else if(sum===max){
+                        if(x>answer) answer=x;
+                    }
+                }
+                return answer;
+            }
+            
+            let arr=[128, 460, 603, 40, 521, 137, 123];
+            console.log(solution(7, arr));
+        </script>
+    </body> -->

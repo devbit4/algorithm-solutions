@@ -8,6 +8,8 @@
       function solution(s) {
         let answer;
         let stack = [];
+
+        // 후위연산식
         for (let x of s) {
           if (!isNaN(x)) {
             stack.push(Number(x));
