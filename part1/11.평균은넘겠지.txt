@@ -1,0 +1,20 @@
+const fs=require("fs")
+const input=fs.readFileSync("index.txt").toString().split("\n")
+
+const totalCnt=Number(input[0])
+
+let answer=""
+for(let i=1;i<=totalCnt;i++){
+  let arr=input[i].split(" ").map(Number)
+
+  let cnt = arr.shift()
+
+  let 평균=arr.reduce((a,b)=>a+b)/cnt
+
+  let 학생수=arr.filter(a=>a>평균).length
+
+  let 비율 =(학생수/cnt*100).toFixed(3)+"%"
+
+answer+=비율+"\n"
+  
+}
