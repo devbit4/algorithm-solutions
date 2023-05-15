@@ -1,0 +1,31 @@
+let fs = require("fs")
+let input = fs.readFileSync("input.txt").toString().split("\n")
+
+// 60분이 넘어가면 시간이 올라간다
+// 24는 0으로 표현된다
+// 1000분까지 표현
+
+let hour = Number(input[0].split(" ")[0])
+let minute = Number(input[0].split(" ")[1])
+
+const time=Number(input[1])
+
+const plusHour=parseInt(time/60)
+const plusMinute=time%60
+
+
+if(minute+plusMinute>=60){
+  hour+=plusHour+1
+  minute=minute+plusMinute-60
+  
+}else {
+  hour+=plusHour
+  minute+=plusMinute
+}
+
+if(hour>=24){
+  hour=hour-24
+}
+
+console.log(hour,minute)
+
