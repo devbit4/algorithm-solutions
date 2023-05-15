@@ -1,0 +1,14 @@
+let fs = require("fs")
+let input = fs.readFileSync("input.txt").toString().split("\n")
+
+const leftNumber=Number(input[0])
+
+const a= Number(input[1].split("")[2])
+const b= Number(input[1].split("")[1])
+const c= Number(input[1].split("")[0])
+
+
+console.log(leftNumber*a)
+console.log(leftNumber*b)
+console.log(leftNumber*c)
+console.log(leftNumber*a+leftNumber*b*10+leftNumber*c*100)
