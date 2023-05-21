@@ -1,0 +1,53 @@
+const fs = require("fs")
+const input = fs.readFileSync("index.txt").toString().split("\n")
+
+
+const nums=input[0].replace(/[^0-9]/g," ").split(" ").map(Number)
+const ops= input[0].replace(/[0-9]/g,"").split("")
+
+console.log(nums,ops)
+
+let answer=0
+let minus=false
+
+for(let i=0;i<nums.length;i++){
+  if(minus===true){
+    answer-=nums[i]
+  }else{
+    answer+=nums[i]
+  }
+    if(ops[i]==="-"){
+    minus=true
+  }
+  
+  
+  
+}
+
+console.log(answer)
+
+
+//다른 풀이
+
+const fs = require("fs")
+const input = fs.readFileSync("index.txt").toString().split("\n")
+
+
+let groups=input[0].split("-")
+
+let answer=0;
+
+for(let i=0; i<groups.length; i++){
+
+  let cur= groups[i].split("+").map(Number).reduce((a,b)=>a+b)
+
+
+  if(i===0){
+    answer+=cur
+  }else {
+    answer-=cur
+  }
+}
+console.log(answer)
+
+
