@@ -1,0 +1,42 @@
+const fs = require("fs")
+const input = fs.readFileSync("index.txt").toString().split("\n")
+
+let [init, final] = input[0].split(" ").map(Number)
+
+
+let cnt = 1;
+let flag = false;
+
+
+while (true) {
+  //
+
+  if (init > final) {
+    break;
+  }
+  if(init===final){
+   
+    flag=true
+    break
+  }
+  //
+  if (final % 2 == 0) {
+    final = final / 2
+  }
+  //
+  else if (final % 10 === 1) {
+    final = parseInt(final / 10)
+  }
+  else {
+    break;
+  }
+
+  cnt++
+
+}
+
+if (flag) {
+  console.log(cnt)
+} else {
+  console.log(-1)
+}
