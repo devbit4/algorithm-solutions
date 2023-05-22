@@ -1,0 +1,26 @@
+const fs = require("fs")
+const input = fs.readFileSync("index.txt").toString().split("\n")
+
+
+
+const num=Number(input[0])
+
+const origin =input[1].split(" ")
+let arr= [...new Set(input[1].split(" "))]
+
+arr.sort((a,b)=>a-b)
+
+const a =new Map()
+
+for(let i=0;i<arr.length;i++){
+  a.set(arr[i],i)
+}
+
+let answer=""
+for(let i=0;i<origin.length;i++){
+
+  answer+=a.get(origin[i])+"\n"
+
+}
+
+console.log(answer)
