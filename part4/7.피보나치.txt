@@ -1,0 +1,37 @@
+const fs = require("fs")
+const input = fs.readFileSync("/dev/stdin").toString().split("\n")
+
+const num = Number(input[0])
+
+let arr = [];
+
+for (let i = 1; i <= num; i++) {
+  arr.push(input[i])
+}
+
+for (let i = 0; i < arr.length; i++) {
+  // 피보나치 수열
+  let pi=[1,1];
+  let index=2;
+
+  while(true){
+    let sum= pi[index-1]+pi[index-2]
+    if(sum>arr[i]){
+      break;
+    }
+    pi.push(sum)
+    index++
+  }
+
+  const answer=[];
+
+  let num=Number(arr[i])
+  // 
+  for(let i=pi.length-1; i>=0;i--){
+  if(num-pi[i]>=0){
+    num=num-pi[i]
+    answer.push(pi[i])
+  }
+  }
+  console.log(answer.reverse().join(" "))
+}
