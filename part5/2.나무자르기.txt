@@ -1,0 +1,31 @@
+const fs = require("fs")
+const input = fs.readFileSync("index.txt").toString().split("\n")
+
+
+let m = input[0].split(" ").map(Number)[1]
+let arr = input[1].split(" ").map(Number)
+
+let start = 0;
+let end = Math.max(...arr)
+
+let result;
+
+while (start <= end) {
+  let mid = parseInt((start + end) / 2)
+
+  let sum = 0;
+  for (let x of arr) {
+    sum += Math.max(0, x - mid)
+  }
+
+  if (sum >= m) {
+    result = mid
+    start = mid + 1
+  } else {
+   end=mid-1
+  }
+
+
+}
+
+console.log(result)
