@@ -1,0 +1,33 @@
+const fs = require("fs")
+const input = fs.readFileSync("index.txt").toString().split("\n")
+
+
+const caseCnt=Number(input[0])
+
+let arr=[]
+
+for(let i=1;i<=caseCnt;i++){
+  arr.push(input[i].split(" ").map(Number))
+}
+
+
+arr.sort((a,b)=>{
+  if(a[1]===b[1]){
+    return a[0]-b[0]
+  }
+  return a[1]-b[1]
+})
+
+
+let finishTime=0
+let cnt=0
+
+for(let i=0;i<caseCnt;i++){
+
+if(arr[i][0]>=finishTime){
+  cnt++
+  finishTime=arr[i][1] 
+}  
+}
+
+console.log(cnt)

@@ -1,0 +1,27 @@
+const fs = require("fs")
+const input = fs.readFileSync("index.txt").toString().split("\n")
+
+let total = Number(input[0])
+
+let distance = input[1].split(" ").map(Number)
+
+let price = input[2].split(" ").map(Number)
+
+distance.map(n=>BigInt(n))
+
+
+let totalPrice = BigInt(0);
+
+let min = price[0]
+for (let i = 0; i < distance.length; i++) {
+
+  
+ if (min > price[i]) {
+
+      min = price[i]
+    }
+
+    totalPrice += BigInt(distance[i]) * BigInt(min)
+
+}
+console.log(String(totalPrice))
