@@ -1,0 +1,29 @@
+const fs = require("fs")
+const input = fs.readFileSync("index.txt").toString().split("\n")
+
+const n = Number(input[0])
+
+let arr=[]
+let answer=""
+
+function isPossible(target) {
+  if(arr.includes(target))return false
+  
+  return true
+}
+
+function dfs(row) {
+  if(row==n) answer+=arr.join(" ")+"\n"
+  for(let i=1;i<=n;i++){
+  if(!isPossible(i))continue;
+    {
+      arr.push(i)
+      dfs(row+1)
+      arr.pop()
+    } 
+  }
+}
+
+dfs(0)
+
+console.log(answer)
