@@ -1,0 +1,31 @@
+const fs = require("fs")
+const input = fs.readFileSync("index.txt").toString().split("\n")
+
+let m = Number(input[0].split(" ")[0])
+let n = Number(input[0].split(" ")[1])
+
+let result=[]
+
+let answer=""
+
+function dfs(row) {
+  if (row === n) {
+    answer+=result.join(" ")+"\n"
+
+  } else {    
+    for(let i=1;i<=m;i++){ 
+      if(result.length>0&& result[result.length-1]>i){
+        continue
+      }
+      
+      result.push(i)
+      dfs(row+1)
+      result.pop()
+      
+
+    }
+  }
+}
+dfs(0)
+
+console.log(answer)
