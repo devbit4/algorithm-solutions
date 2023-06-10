@@ -1,0 +1,44 @@
+const fs = require("fs")
+let input = fs.readFileSync("index.txt").toString().split("\n")
+
+
+let [m, n] = input.shift().split(" ").map(Number)
+
+let graph = Array.from(Array(m + 1), () => [])
+
+for (let i = 0; i < m - 1; i++) {
+  let [m, n, k] = input[i].split(" ").map(Number);
+  graph[m].push([n,k]);
+  graph[n].push([m,k]);
+
+}
+
+// 
+const couple = input.slice(m - 1)
+
+console.log(graph)
+function dfs(x,y,sum){
+
+  console.log(x,y,sum)
+ 
+  if(visited[x])return;
+  visited[x]=true;
+
+  
+  if(x===y){
+   return console.log(sum)
+  }
+  
+  for(let [b,cost] of graph[x]){
+    dfs(b,y,sum+cost)    
+  }
+  
+}
+
+for (let el of couple) {
+
+    let [x,y]=el.split(" ").map(Number);
+    visited=Array(m+1).fill(false)
+    dfs(x,y,0)
+   
+}
