@@ -1,0 +1,33 @@
+const fs = require("fs")
+let input = fs.readFileSync("index.txt").toString().split("\n")
+
+let m = Number(input[0])
+let n = Number(input[1])
+
+let graph = Array.from(Array(m + 1), () => [])
+
+for (let i = 2; i <= n + 1; i++) {
+  const [x, y] = input[i].split(" ").map(Number)
+  graph[x].push(y)
+  graph[y].push(x)
+}
+
+let count=0;
+let visited = Array(m + 1).fill(false)
+
+
+function dfs(x) {
+  visited[x] = true;
+  count++;
+
+
+  for (let el of graph[x]) {
+    if (!visited[el]) {
+      dfs(el)
+    }
+  }
+}
+
+dfs(1)
+
+console.log(count-1)
