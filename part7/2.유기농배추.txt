@@ -1,0 +1,47 @@
+const fs = require("fs")
+let input = fs.readFileSync("index.txt").toString().split("\n")
+
+const testCaseCnt=Number(input.shift())
+
+for(let i=0;i<testCaseCnt;i++){
+  let answer=0;
+  
+  let [m,n,k]=input.shift().split(" ").map(Number)
+  
+  let graph=Array.from(Array(n),()=>Array(m));
+
+  for(let i=0;i<k;i++){
+    let [x,y]=input[i].split(" ").map(Number)
+    graph[y][x]=1
+    
+  }
+
+  function dfs(x,y){
+    if(x<0||y<0||x>=n||y>=m){
+      return false;
+    }
+    if(graph[x][y]===1){
+      graph[x][y]=-1;
+      dfs(x+1,y)
+      dfs(x,y+1)
+      dfs(x-1,y)
+      dfs(x,y-1)
+      
+      return true;
+    }
+    return false
+    
+  }
+  
+
+  for(let i=0;i<n;i++){
+    for(let j=0;j<m;j++){
+      if(dfs(i,j))answer++      
+    }
+  }
+  
+
+  input=input.slice(k)
+  console.log(answer)
+}
+
