@@ -1,0 +1,60 @@
+const fs = require("fs")
+let input = fs.readFileSync("index.txt").toString().split("\n")
+
+let [n,m]=input.shift().split(" ").map(Number);
+
+let house=[];
+let chicken=[];
+
+for(let i=0;i<n;i++){
+  let line=input[i].split(" ").map(Number);
+  for(let j=0;j<n;j++){
+    if(line[j]===1){house.push([i,j])}
+    if(line[j]===2){chicken.push([i,j])}
+  }
+  
+}
+
+function dfs(depth,start){
+
+  if(depth===m){
+    //선택된 치킨집 
+    let result=[];
+    for(let el of selected){
+      result.push(chicken[el])
+    }
+
+    //치킨 거리의 합
+    let sum=0;
+
+    for(let [x,y] of house){
+      let temp=Number.MAX_SAFE_INTEGER;
+      for(let [a,b] of result){
+        temp=Math.min(temp,Math.abs(x-a)+Math.abs(y-b))
+      }
+      sum+=temp
+    }
+
+    
+    answer=Math.min(answer,sum)
+    
+    return 
+  }
+  else {
+    for(let i=start;i<chicken.length;i++){
+    selected.push(i)
+    dfs(depth+1,i+1)
+    selected.pop()
+  }
+    
+  }
+}
+
+
+let visited=new Array(chicken.length).fill(false)
+let selected=[]
+let answer=Number.MAX_SAFE_INTEGER;
+
+dfs(0,0)
+
+console.log(answer)
