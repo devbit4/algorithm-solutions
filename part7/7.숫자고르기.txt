@@ -1,0 +1,45 @@
+const fs = require("fs")
+let input = fs.readFileSync("index.txt").toString().split("\n")
+
+let n=Number(input.shift())
+
+let graph=[0,...input.map(Number)]
+
+
+let visited=Array(n+1).fill(false)
+let finished=Array(n+1).fill(false)
+
+let result=[]
+
+
+function dfs(x,graph,visited,finished){
+
+  visited[x]=true;
+  y=graph[x]
+
+  // 다음 노드를 방문하지 않았을 때
+  if(!visited[y]){
+    dfs(y,graph,visited,finished)
+  }
+  // 다음 노드를 방문하였으나 마치지 않았을 때 
+  else if(!finished[y]){
+    while(x !==y){
+      result.push(y)
+      y=graph[y]
+    }
+    result.push(y)
+  }
+
+  finished[x]=true
+  
+}
+
+for(let x=1;x<=n;x++){
+  if(!visited[x]){
+     dfs(x,graph,visited,finished) 
+  }
+}
+
+console.log(result.length)
+result.sort((a,b)=>a-b)
+console.log(result.join(""+"\n"))
