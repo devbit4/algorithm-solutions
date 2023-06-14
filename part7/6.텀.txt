@@ -1,0 +1,49 @@
+const fs = require("fs")
+let input = fs.readFileSync("index.txt").toString().split("\n")
+
+let testCases = Number(input.shift())
+
+function dfs(x, graph, visited, finished, result) {
+
+  visited[x] = true;
+  let y = graph[x];
+
+
+  //다음노드를 방문한 적이 없다면
+  if (!visited[y]) {
+    dfs(y, graph, visited, finished, result);
+  }
+  //다음노드를 방문한 적이 있고, 완료되지 않았다면
+  else if (!finished[y]) {
+    while (y != x) {
+      result.push(y);
+      y = graph[y]
+    }
+    result.push(x)
+
+  }
+  finished[x] = true
+
+}
+
+for (let i = 0; i < testCases; i++) {
+  let n = Number(input[0])
+  let graph = [0, ...input[1].split(" ").map(Number)]
+
+  console.log(graph)
+  let visited = new Array(n + 1).fill(false)
+  let finished = new Array(n + 1).fill(false)
+  let result = []
+
+  for (let x = 1; x <= n; x++) {
+    if (!visited[x]) {
+      dfs(x, graph, visited, finished, result)
+    }
+
+  }
+
+  console.log(n - result.length)
+  console.log(result)
+  input = input.slice(2)
+}
+
