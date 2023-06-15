@@ -1,0 +1,62 @@
+const fs = require("fs")
+let input = fs.readFileSync("index.txt").toString().split("\n")
+
+let n = Number(input.shift())
+
+let graph = [];
+for (let i = 0; i < n; i++) {
+  graph.push(input[i].split(""))
+}
+
+let visited=Array.from(Array(n),()=>Array(n).fill(false))
+
+let answer=0
+let answer2=0
+
+function dfs(i,j,target,target2){
+  if(i<0||j<0||i>=n||j>=n){
+    return
+  }
+  
+  if(!visited[i][j]&& target==graph[i][j]){
+    visited[i][j]=true
+    dfs(i+1,j,target,target2)
+    dfs(i,j+1,target,target2)
+    dfs(i-1,j,target,target2)
+    dfs(i,j-1,target,target2)
+  }else if(!visited[i][j]&& target2==graph[i][j]){
+    visited[i][j]=true
+    dfs(i+1,j,target,target2)
+    dfs(i,j+1,target,target2)
+    dfs(i-1,j,target,target2)
+    dfs(i,j-1,target,target2)
+  }
+  
+}
+
+for(let i=0;i<n;i++){
+  for(let j=0;j<n;j++){
+    if(!visited[i][j]){
+      answer++
+      dfs(i,j,graph[i][j])
+    }  
+    
+  }
+}
+
+visited=Array.from(Array(n),()=>Array(n).fill(false))
+
+for(let i=0;i<n;i++){
+  for(let j=0;j<n;j++){
+    if(!visited[i][j]){
+      const target2=graph[i][j]==="R"?"G":graph[i][j]==="G"?"R":undefined
+      
+      answer2++
+      dfs(i,j,graph[i][j],target2)
+    }  
+    
+  }
+}
+
+
+console.log(answer+" "+answer2)
