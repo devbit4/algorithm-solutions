@@ -1,0 +1,35 @@
+const fs = require("fs")
+let input = fs.readFileSync("index.txt").toString().split("\n")
+
+let num = Number(input.shift())
+let numbers = input[0].split(" ").map(Number)
+
+let tmp = [];
+let answer = Number.MIN_SAFE_INTEGER;
+
+const backtrack = () => {
+
+  if (tmp.length === num) {
+    const final = tmp.map(item => numbers[item])
+    let sum = 0;
+
+    for (let i = 0; i < final.length - 1; i++) {
+      sum += Math.abs(final[i] - final[i + 1])
+    }
+
+    answer = Math.max(answer, sum)
+
+    return;
+  }
+
+  for (let i = 0; i < numbers.length; i++) {
+    if (tmp.includes(i)) continue;
+    tmp.push(i);
+    backtrack();
+    tmp.pop();
+  }
+}
+
+backtrack();
+
+console.log(answer)
