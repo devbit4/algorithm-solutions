@@ -1,0 +1,75 @@
+const fs = require("fs")
+let input = fs.readFileSync("index.txt").toString().split("\n")
+
+class Queue {
+  constructor() {
+    this._arr = []
+  }
+  enqueue(item) {
+    this._arr.push(item)
+  }
+  dequeue() {
+    return this._arr.shift()
+  }
+  getLength() {
+    return this._arr.length
+  }
+}
+
+
+let testCases = Number(input.shift())
+
+
+// 빨간색 0,
+function bfs(x, graph, visited) {
+  let queue = new Queue();
+  queue.enqueue(x);
+
+  visited[x] = 0;
+
+  while (queue.getLength() != 0) {
+    const out = queue.dequeue()
+
+    for (let el of graph[out]) {
+      if (visited[el] === -1) {
+        visited[el] = (visited[out] + 1) % 2
+        queue.enqueue(el)
+      }
+    }
+
+  }
+
+}
+
+for (let i = 0; i < testCases; i++) {
+  let [v, e] = input.shift().split(" ").map(Number);
+
+  let graph = Array.from(new Array(v + 1), () => []);
+
+  for (let j = 0; j < e; j++) {
+    let [u, v] = input[j].split(" ").map(Number);
+    graph[u].push(v);
+    graph[v].push(u);
+  }
+
+  let visited = new Array(v + 1).fill(-1);
+  for (let i = 1; i <= v; i++) {
+    if (visited[i] === -1) {
+      bfs(i, graph, visited)
+    }
+  }
+
+  let answer = true
+  for (let i = 1; i < visited.length; i++) {
+    for (let el of graph[i]) {
+      if (visited[i] == visited[el]) {
+        answer = false
+      }
+    }
+  }
+
+
+  input = input.slice(e)
+  console.log(answer?"YES":"NO")
+}
+
