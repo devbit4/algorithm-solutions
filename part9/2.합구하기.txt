@@ -1,0 +1,22 @@
+const fs = require("fs")
+let input = fs.readFileSync("index.txt").toString().split("\n")
+
+let data=input[1].split(" ").map(Number);
+let m=Number(input[2])
+
+let sumValue=0;
+let prefixSum=[0];
+
+for(let el of data){
+  sumValue=sumValue+el;
+  prefixSum.push(sumValue)
+}
+
+// prefixSum[right]-prefixSum[left-1]
+let answer="";
+for(let query=3; query<=m+2;query++){
+  let [left,right]=input[query].split(" ").map(Number)
+  answer+=(prefixSum[right]-prefixSum[left-1])+"\n"; 
+}
+
+console.log(answer)
