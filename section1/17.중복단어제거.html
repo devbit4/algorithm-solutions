@@ -1,0 +1,26 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      function solution(s) {
+        let answer = [];
+
+        const map = new Map();
+
+        for (let word of s) {
+          if (!map.has(word)) {
+            map.set(word, true);
+            answer.push(word);
+          }
+        }
+
+        return answer;
+      }
+      let str = ['good', 'time', 'good', 'time', 'student'];
+      console.log(solution(str));
+    </script>
+  </body>
+</html>
