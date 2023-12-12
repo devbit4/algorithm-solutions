@@ -1,0 +1,33 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      function solution(s) {
+        let answer = '';
+
+        for (let ele of s) {
+          const codeNum = ele.charCodeAt();
+
+          if (ele === ele.toUpperCase()) {
+            answer += ele.toLowerCase();
+          } else {
+            answer += ele.toUpperCase();
+          }
+
+          //   if (codeNum >= 65 && codeNum <= 90) {
+          //     answer += ele.toLowerCase();
+          //   } else {
+          //     answer += ele.toUpperCase();
+          //   }
+        }
+
+        return answer;
+      }
+
+      console.log(solution('StuDY'));
+    </script>
+  </body>
+</html>
