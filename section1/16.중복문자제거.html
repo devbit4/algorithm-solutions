@@ -1,0 +1,26 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      function solution(s) {
+        let answer = '';
+
+        const map = new Map();
+
+        for (const ele of s) {
+          if (!map.has(ele)) {
+            map.set(ele, true);
+            answer += ele;
+          }
+        }
+        console.log(map);
+
+        return answer;
+      }
+      console.log(solution('ksekkset'));
+    </script>
+  </body>
+</html>
