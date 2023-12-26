@@ -1,0 +1,25 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      function solution(s) {
+        let answer = 'NO';
+
+        const replacedString = s.toUpperCase();
+
+        const reversedString = replacedString.split('').reverse().join('');
+
+        if (replacedString === reversedString) {
+          return 'YES';
+        }
+        return answer;
+      }
+
+      let str = 'gooG';
+      console.log(solution(str));
+    </script>
+  </body>
+</html>
