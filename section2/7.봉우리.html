@@ -1,0 +1,112 @@
+<!-- <html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      function solution(arr) {
+        let answer = 0;
+        const n = arr.length;
+
+        for (let i = 0; i < arr.length; i++) {
+          for (let j = 0; j < arr.length; j++) {
+            let cnt = 0;
+
+            const 기준 = i >= 0 && j >= 0 && i < n && j < n && arr[i][j];
+            const up =
+              i >= 0 && j + 1 >= 0 && i < n && j + 1 < n && arr[i][j + 1];
+            const down =
+              i >= 0 && j - 1 >= 0 && i < n && j - 1 < n && arr[i][j - 1];
+            const left =
+              i - 1 >= 0 && j >= 0 && i - 1 < n && j < n && arr[i - 1][j];
+            const right =
+              i + 1 >= 0 && j >= 0 && i + 1 < n && j < n && arr[i + 1][j];
+
+            if (기준 > up || !up) cnt++;
+            if (기준 > down || !down) cnt++;
+            if (기준 > left || !left) cnt++;
+            if (기준 > right || !right) cnt++;
+            if (cnt === 4) answer++;
+          }
+        }
+
+        return answer;
+      }
+
+      let arr = [
+        [5, 3, 7, 2, 3],
+        [3, 7, 1, 6, 1],
+        [7, 2, 5, 3, 4],
+        [4, 3, 6, 4, 1],
+        [8, 7, 3, 5, 2],
+      ];
+      console.log(solution(arr));
+    </script>
+  </body>
+</html> -->
+
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      function solution(arr) {
+        let answer = 0;
+        const n = arr.length;
+        const dx = [-1, 0, 1, 0];
+        const dy = [0, 1, 0, -1];
+
+        for (let i = 0; i < n; i++) {
+          for (let j = 0; j < n; j++) {
+            let cnt = 4;
+            // const 기준 = i >= 0 && j >= 0 && i < n && j < n && arr[i][j];
+            // const up =
+            //   i >= 0 && j + 1 >= 0 && i < n && j + 1 < n && arr[i][j + 1];
+            // const down =
+            //   i >= 0 && j - 1 >= 0 && i < n && j - 1 < n && arr[i][j - 1];
+            // const left =
+            //   i - 1 >= 0 && j >= 0 && i - 1 < n && j < n && arr[i - 1][j];
+            // const right =
+            //   i + 1 >= 0 && j >= 0 && i + 1 < n && j < n && arr[i + 1][j];
+            for (let k = 0; k < 4; k++) {
+              //x좌표,y좌표
+              let nx = i + dx[k];
+              let ny = j + dy[k];
+
+              if (
+                nx >= 0 &&
+                ny >= 0 &&
+                nx < n &&
+                ny < n &&
+                arr[i][j] <= arr[nx][ny]
+              ) {
+                cnt--;
+                break;
+              }
+            }
+
+            // if (기준 > up || !up) cnt++;
+            // if (기준 > down || !down) cnt++;
+            // if (기준 > left || !left) cnt++;
+            // if (기준 > right || !right) cnt++;
+            if (cnt === 4) answer++;
+          }
+        }
+
+        return answer;
+      }
+
+      let arr = [
+        [5, 3, 7, 2, 3],
+        [3, 7, 1, 6, 1],
+        [7, 2, 5, 3, 4],
+        [4, 3, 6, 4, 1],
+        [8, 7, 3, 5, 2],
+      ];
+      console.log(solution(arr));
+    </script>
+  </body>
+</html>
