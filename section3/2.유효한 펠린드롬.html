@@ -1,0 +1,25 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      function solution(s) {
+        let answer = 'YES';
+
+        const replacedString = str.toUpperCase().replaceAll(/[^A-Z]/gi, '');
+
+        const reversed = replacedString.split('').reverse().join('');
+
+        if (replacedString !== reversed) {
+          answer = 'NO';
+        }
+        return answer;
+      }
+
+      let str = 'found7, time: study; Yduts; emit, 7Dnuof';
+      console.log(solution(str));
+    </script>
+  </body>
+</html>
