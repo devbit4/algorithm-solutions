@@ -1,0 +1,35 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      function solution(s) {
+        let answer = '';
+
+        const map = new Map();
+
+        for (let x of s.split('')) {
+          if (map.has(x)) {
+            map.set(x, map.get(x) + 1);
+          } else {
+            map.set(x, 1);
+          }
+        }
+
+        for (let [key, value] of map) {
+          if (value === 1) {
+            answer = answer + key;
+          } else {
+            answer = answer + key + value;
+          }
+        }
+        return answer;
+      }
+
+      let str = 'KKHSSSSSSSE';
+      console.log(solution(str));
+    </script>
+  </body>
+</html>
