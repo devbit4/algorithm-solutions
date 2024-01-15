@@ -1,0 +1,37 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      function solution(n, arr) {
+        let answer = Number.MIN_SAFE_INTEGER;
+
+        let max = Number.MIN_SAFE_INTEGER;
+
+        for (let i = 0; i < arr.length; i++) {
+          const origin = arr[i];
+
+          const sum = String(arr[i])
+            .split('')
+            .reduce((acc, cur) => acc + Number(cur), 0);
+
+          if (max < sum) {
+            max = sum;
+            answer = origin;
+          } else if (max === sum) {
+            if (answer < origin) {
+              answer = origin;
+            }
+          }
+        }
+
+        return answer;
+      }
+
+      let arr = [51, 27];
+      console.log(solution(7, arr));
+    </script>
+  </body>
+</html>
