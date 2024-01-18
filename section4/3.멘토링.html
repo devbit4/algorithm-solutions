@@ -1,0 +1,47 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      function solution(test) {
+        let answer = 0;
+
+        let personCount = test[0].length;
+
+        for (let i = 1; i <= personCount; i++) {
+          for (let j = 1; j <= personCount; j++) {
+            if (i !== j) {
+              const first = i;
+              const second = j;
+
+              let isPossible = true;
+              for (let k = 0; k < test.length; k++) {
+                const firstIndex = test[k].indexOf(i);
+                const secondIndex = test[k].indexOf(j);
+
+                if (firstIndex > secondIndex) {
+                  isPossible = false;
+                }
+              }
+              if (isPossible) {
+                console.log(first, second);
+                answer++;
+              }
+            }
+          }
+        }
+
+        return answer;
+      }
+
+      let arr = [
+        [3, 4, 1, 2],
+        [4, 3, 2, 1],
+        [3, 1, 4, 2],
+      ];
+      console.log(solution(arr));
+    </script>
+  </body>
+</html>
