@@ -13,20 +13,21 @@
         for (let i = 1; i <= personCount; i++) {
           for (let j = 1; j <= personCount; j++) {
             if (i !== j) {
-              const first = i;
-              const second = j;
+              const mentor = i;
+              const mentee = j;
 
               let isPossible = true;
               for (let k = 0; k < test.length; k++) {
-                const firstIndex = test[k].indexOf(i);
-                const secondIndex = test[k].indexOf(j);
+                const mentorIndex = test[k].indexOf(i);
+                const menteeIndex = test[k].indexOf(j);
 
-                if (firstIndex > secondIndex) {
+                if (mentorIndex > menteeIndex) {
                   isPossible = false;
+                  break;
                 }
               }
               if (isPossible) {
-                console.log(first, second);
+                console.log(mentor, mentee);
                 answer++;
               }
             }
