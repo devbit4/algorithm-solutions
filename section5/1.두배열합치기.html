@@ -8,9 +8,31 @@
       function solution(arr1, arr2) {
         let answer = [];
 
-        answer = [...arr1, ...arr2];
+        let n = arr1.length;
+        let m = arr2.length;
 
-        answer = answer.sort((a, b) => a - b);
+        let p = 0;
+        let q = 0;
+
+        while (p < n && q < m) {
+          if (arr1[p] <= arr2[q]) answer.push(arr1[p++]);
+          else answer.push(arr2[q++]);
+        }
+        while (p < n) answer.push(arr1[p++]);
+        while (q < m) answer.push(arr2[q++]);
+        // for (let i = 0; i < totalLegnth; i++) {
+        //   if (arr1[p] <= arr2[q]) {
+        //     answer.push(arr1[p]);
+        //     p++;
+        //   } else {
+        //     answer.push(arr2[q]);
+        //     q++;
+        //   }
+        // }
+
+        // answer = [...arr1, ...arr2];
+
+        // answer = answer.sort((a, b) => a - b);
 
         return answer;
       }
