@@ -1,0 +1,28 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      function solution(n) {
+        function DFS(L) {
+          if (L === 0) return;
+
+          DFS(L - 1);
+          console.log(L);
+        }
+
+        DFS(n);
+        // function DFS(number) {
+        //   if (number > n) return;
+        //   console.log(number);
+        //   DFS(number + 1);
+        // }
+        // DFS(1);
+      }
+
+      solution(3);
+    </script>
+  </body>
+</html>
