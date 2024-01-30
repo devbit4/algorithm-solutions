@@ -8,19 +8,19 @@
       function solution(arr1, arr2) {
         let answer = [];
 
-        let first = arr1.sort((a, b) => a - b);
-        let second = arr2.sort((a, b) => a - b);
+        arr1.sort((a, b) => a - b);
+        arr2.sort((a, b) => a - b);
 
         let p = 0;
         let q = 0;
 
         while (p < arr1.length && q < arr2.length) {
-          if (first[p] < second[q]) {
+          if (arr1[p] < arr2[q]) {
             p++;
-          } else if (first[p] > second[q]) {
+          } else if (arr1[p] > arr2[q]) {
             q++;
           } else {
-            answer.push(first[p]);
+            answer.push(arr1[p]);
             p++;
             q++;
           }
