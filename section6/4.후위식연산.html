@@ -14,16 +14,16 @@
             stack.push(Number(x));
           } else {
             const rt = stack.pop();
-            const left = stack.pop();
+            const lt = stack.pop();
 
             if (x === '+') {
-              stack.push(rt + left);
+              stack.push(rt + lt);
             } else if (x === '-') {
-              stack.push(left - rt);
+              stack.push(lt - rt);
             } else if (x === '*') {
-              stack.push(rt * left);
+              stack.push(rt * lt);
             } else if (x === '/') {
-              stack.push(left / rt);
+              stack.push(lt / rt);
             }
           }
         }
