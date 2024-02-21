@@ -1,0 +1,40 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      function solution(n) {
+        let answer = [];
+
+        let arr = new Array(n + 1).fill(0);
+
+        function DFS(number) {
+          if (number >= n) {
+            let str = '';
+            for (let i = 0; i < arr.length; i++) {
+              if (arr[i]) {
+                str += i + ' ';
+              }
+            }
+            str && answer.push(str.trim());
+
+            return;
+          } else {
+            arr[number + 1] = 1;
+            DFS(number + 1);
+            arr[number + 1] = 0;
+            DFS(number + 1);
+          }
+        }
+
+        DFS(0);
+
+        return answer;
+      }
+
+      console.log(solution(3));
+    </script>
+  </body>
+</html>
