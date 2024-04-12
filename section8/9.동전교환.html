@@ -8,17 +8,7 @@
       function solution(m, arr) {
         let answer = Number.MAX_SAFE_INTEGER;
         let n = arr.length;
-        function DFS(L, sum) {
-          if (sum > m) return;
-          if (L > answer) return;
-          if (sum === m) {
-            answer = Math.min(answer, L);
-          } else {
-            for (let i = 0; i < n; i++) {
-              DFS(L + 1, sum + arr[i]);
-            }
-          }
-        }
+        function DFS(L, sum) {}
         DFS(0, 0);
         return answer;
       }

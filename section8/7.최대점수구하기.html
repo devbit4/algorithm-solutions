@@ -6,26 +6,22 @@
   <body>
     <script>
       function solution(m, ps, pt) {
-        let answer = Number.MIN_SAFE_INTEGER;
+        const omrVier = 'Y/SS';
 
-        let length = ps.length;
+        const smallQuestions = omrVier.split('/');
 
-        function DFS(L, time, sum) {
-          if (time > m) {
-            return;
-          }
+        let numbers = [];
 
-          if (L == ps.length) {
-            answer = Math.max(answer, sum);
-          } else {
-            DFS(L + 1, time + pt[L], sum + ps[L]);
-            DFS(L + 1, time, sum);
-          }
-        }
+        smallQuestions.forEach((question) => {
+          const num = index + 1;
+          numbers.push(
+            ...Array.from({ length: question.length }, (value, index) =>
+              index === 0 ? num : null
+            )
+          );
+        });
 
-        DFS(0, 0, 0);
-
-        return answer;
+        console.log(numbers);
       }
 
       let ps = [10, 25, 15, 6, 7];
