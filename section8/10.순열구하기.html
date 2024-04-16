@@ -10,18 +10,21 @@
         n = arr.length;
 
         let tmp = Array.from({ length: m }, () => 0);
+        let ch = Array.from({ length: n }, () => 0);
 
         function DFS(depth) {
           if (depth === m) {
             //
 
-            if (new Set(tmp).size === m) {
-              answer.push(tmp.slice());
-            }
+            answer.push(tmp.slice());
           } else {
             for (let i = 0; i < n; i++) {
-              tmp[depth] = arr[i];
-              DFS(depth + 1);
+              if (ch[i] === 0) {
+                ch[i] = 1;
+                tmp[depth] = arr[i];
+                DFS(depth + 1);
+                ch[i] = 0;
+              }
             }
           }
         }
