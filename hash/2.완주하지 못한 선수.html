@@ -1,0 +1,39 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      function solution(participant, completion) {
+        let answer = '';
+
+        const map = new Map();
+
+        for (let el of participant) {
+          if (map.has(el)) {
+            map.set(el, map.get(el) + 1);
+          } else {
+            map.set(el, 1);
+          }
+        }
+
+        for (let el of completion) {
+          map.set(el, map.get(el) - 1);
+        }
+
+        for (let [key, value] of map) {
+          if (value === 1) return key;
+        }
+
+        answer = participant[0];
+
+        return answer;
+      }
+
+      let a = ['leo', 'kiki', 'eden'];
+      let b = ['eden', 'kiki'];
+      console.log(solution(a, b));
+    </script>
+  </body>
+</html>
