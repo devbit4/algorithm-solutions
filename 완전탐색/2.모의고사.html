@@ -1,0 +1,49 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      function solution(answers) {
+        let students = [];
+
+        let man1 = [1, 2, 3, 4, 5];
+        let man2 = [2, 1, 2, 3, 2, 4, 2, 5];
+        let man3 = [3, 3, 1, 1, 2, 2, 4, 4, 5, 5];
+
+        let count = [0, 0, 0];
+
+        for (let i = 0; i < answers.length; i++) {
+          let answer = answers[i];
+          let man1Answer = man1[i % man1.length];
+          let man2Answer = man2[i % man2.length];
+          let man3Answer = man3[i % man3.length];
+
+          if (answer == man1Answer) count[0]++;
+          if (answer == man2Answer) count[1]++;
+          if (answer == man3Answer) count[2]++;
+        }
+
+        let max = Math.max(count[0], count[1], count[2]);
+
+        if (count[0] === max) {
+          answer.push(1);
+        }
+
+        if (count[1] === max) {
+          answer.push(2);
+        }
+
+        if (count[2] === max) {
+          answer.push(3);
+        }
+        return students;
+      }
+
+      let answers = [1, 3, 2, 4, 2];
+
+      console.log(solution(answers));
+    </script>
+  </body>
+</html>
