@@ -6,29 +6,29 @@
   <body>
     <script>
       function solution(a, b) {
-        let answer = "";
+        let answer = '';
 
         a.forEach((ele, index) => {
           if (a[index] === b[index]) {
-            answer = answer + "D ";
+            answer = answer + 'D ';
           }
           if (a[index] === 1 && b[index] === 2) {
-            answer = answer + "B ";
+            answer = answer + 'B ';
           }
           if (a[index] === 1 && b[index] === 3) {
-            answer = answer + "A ";
+            answer = answer + 'A ';
           }
           if (a[index] === 2 && b[index] === 1) {
-            answer = answer + "A ";
+            answer = answer + 'A ';
           }
           if (a[index] === 2 && b[index] === 3) {
-            answer = answer + "B ";
+            answer = answer + 'B ';
           }
           if (a[index] === 3 && b[index] === 1) {
-            answer = answer + "B ";
+            answer = answer + 'B ';
           }
           if (a[index] === 3 && b[index] === 2) {
-            answer = answer + " A";
+            answer = answer + ' A';
           }
         });
 

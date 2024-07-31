@@ -1,0 +1,35 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      function solution(sizes) {
+        let left = [];
+        let right = [];
+
+        let rotated = sizes.map((size) => {
+          return size.sort((a, b) => a - b);
+        });
+
+        rotated.forEach(([le, ri]) => {
+          left.push(le);
+          right.push(ri);
+        });
+
+        return Math.max(...left) * Math.max(...right);
+      }
+
+      let sizes = [
+        [14, 4],
+        [19, 6],
+        [6, 16],
+        [18, 7],
+        [7, 11],
+      ];
+
+      console.log(solution(sizes));
+    </script>
+  </body>
+</html>
